@@ -1,0 +1,10 @@
+build
+.gradle
+local.properties
+*/fabric.properties
+.idea
+*.iml
+gradle.properties
+staticAnalysisReport
+*.keystore
+*.pwd
