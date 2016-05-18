@@ -1,0 +1,56 @@
+import java.nio.file.Paths
+
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+        jcenter()
+    }
+
+    def androidPluginVersion = "2.1.0"
+    def androidAptPluginVersion = "1.8"
+
+    def classpathDependencies = [androidPlugin   : "com.android.tools.build:gradle:${androidPluginVersion}",
+                                 androidAptPlugin: "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}"]
+
+    dependencies {
+        classpath classpathDependencies.androidPlugin
+        classpath classpathDependencies.androidAptPlugin
+    }
+}
+
+apply from: 'buildsystem/dependencies.gradle'
+
+def staticAnalysisReportFolderTarget = project.rootDir.getAbsolutePath() + "/staticAnalysisReport"
+
+allprojects {
+    ext {
+        androidVersionCode = 1
+        androidVersionName = "0.0"
+
+        gradleWrapperVersion = '2.13'
+
+        androidApplicationId = "assignment.jorge"
+
+        staticAnalysisReportTarget = staticAnalysisReportFolderTarget
+    }
+}
+
+task wrapper(type: Wrapper) {
+    group "Build Setup"
+    description "Creates the gradle wrapper."
+
+    //noinspection GroovyAssignabilityCheck
+    gradleVersion rootProject.ext.gradleWrapperVersion
+}
+
+task clean(type: Delete, overwrite: true) {
+    group "Verification"
+    description "Deletes the build directories of the whole project and the static analysis result."
+
+    for (final Project x : rootProject.allprojects) {
+        delete x.buildDir
+        delete Paths.get(x.getProjectDir().absolutePath, staticAnalysisReportFolderTarget).
+                toAbsolutePath().
+                toString()
+    }
+}

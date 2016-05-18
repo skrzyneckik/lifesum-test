@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode rootProject.ext.androidVersionCode
+        versionName rootProject.ext.androidVersionName
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_7
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    lintOptions {
+        checkAllWarnings true
+        warningsAsErrors true
+    }
+
+    dexOptions {
+        incremental true
+        preDexLibraries true
+    }
+}
+
+dependencies {
+    compile project(':domain')
+
+    final Iterable<CharSequence> providedDependencies = providedDataDependencies.values()
+    final Iterable<CharSequence> compileDependencies = compileDataDependencies.values()
+    final Iterable<CharSequence> aptDependencies = aptDataDependencies.values()
+
+    for (final CharSequence dependency : providedDependencies) provided dependency
+    for (final CharSequence dependency : compileDependencies) compile dependency
+    for (final CharSequence dependency : aptDependencies) apt dependency
+}

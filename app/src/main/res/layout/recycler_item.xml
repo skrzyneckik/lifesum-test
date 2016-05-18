@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/recycler_text_padding"
+                                    android:layout_marginEnd="@dimen/recycler_text_padding"
+                                    android:layout_marginTop="@dimen/recycler_item_separation"
+                                    android:layout_marginBottom="@dimen/recycler_item_separation"
+                                    app:cardBackgroundColor="@color/list_item">
+
+    <TextView
+            android:id="@+id/name_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:layout_gravity="center_vertical|start"
+            android:layout_margin="@dimen/recycler_text_padding"
+            android:textIsSelectable="true"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"
+            android:shadowColor="@android:color/black"
+            android:textStyle="bold"/>
+
+    <ImageView
+            android:id="@+id/saved_view"
+            android:layout_gravity="center_vertical|end"
+            android:layout_margin="@dimen/recycler_text_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_saved"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/save"/>
+
+</android.support.v7.widget.CardView>

@@ -1,0 +1,11 @@
+apply from: "../buildsystem/java_module.gradle"
+
+dependencies {
+    final Iterable<CharSequence> compileDependencies = compileDomainDependencies.
+            values()
+    final Iterable<CharSequence> testCompileDependencies = testCompileDomainDependencies.
+            values()
+
+    for (final CharSequence dependency : compileDependencies) compile dependency
+    for (final CharSequence dependency : testCompileDependencies) testCompile dependency
+}

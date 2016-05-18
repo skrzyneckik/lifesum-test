@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TODO Future work: Proper diverse screen support -->
+    <dimen name="padding_standard">10dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="toolbar_title_font">20sp</dimen>
+    <dimen name="recycler_text_padding">12dp</dimen>
+    <dimen name="floating_search_view_margin">16dp</dimen>
+    <dimen name="recycler_item_separation">6dp</dimen>
+</resources>

@@ -1,0 +1,74 @@
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+ext {
+    //Android
+    androidBuildToolsVersion = "23.0.3"
+    androidMinSdkVersion = 23
+    androidTargetSdkVersion = 23
+    androidCompileSdkVersion = 23
+
+    //Dependencies
+    supportLibraryVersion = "23.4.0"
+    daggerVersion = "2.2"
+    rxJavaVersion = "1.1.5"
+    rxAndroidVersion = "1.2.0"
+    timberVersion = "4.1.2"
+    dbFlowVersion = "3.0.0-beta6"
+    retrofitVersion = "2.0.0"
+    jetbrainsAnnotationsVersion = "13.0"
+    leakCanaryVersion = "1.4-beta2"
+    butterknifeVersion = "8.0.1"
+    multidexSupportVersion = "1.0.1"
+    jUnitVersion = "4.12"
+    mockitoVersion = "2.0.52-beta"
+
+    providedPresentationDependencies =
+            [supportAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}"]
+
+    debugCompilePresentationDependencies =
+            [timber    : "com.jakewharton.timber:timber:${timberVersion}",
+             leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"]
+
+    compilePresentationDependencies =
+            [dagger          : "com.google.dagger:dagger:${daggerVersion}",
+             rxAndroid       : "io.reactivex:rxandroid:${rxAndroidVersion}",
+             supportAppCompat: "com.android.support:appcompat-v7:${supportLibraryVersion}",
+             butterknife     : "com.jakewharton:butterknife:${butterknifeVersion}",
+             recyclerView    : "com.android.support:recyclerview-v7:${supportLibraryVersion}",
+             cardView        : "com.android.support:cardview-v7:${supportLibraryVersion}",
+             multidexSupport : "com.android.support:multidex:${multidexSupportVersion}",
+             supportDesign   : "com.android.support:design:${supportLibraryVersion}"]
+
+    aptPresentationDependencies =
+            [daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
+             butterknifeCompiler: "com.jakewharton:butterknife-compiler:${butterknifeVersion}"]
+
+    compileDomainDependencies =
+            [rxJava        : "io.reactivex:rxjava:${rxJavaVersion}",
+             daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
+             dagger        : "com.google.dagger:dagger:${daggerVersion}"]
+
+    testCompileDomainDependencies = [junit  : "junit:junit:${jUnitVersion}",
+                                     mockito: "org.mockito:mockito-core:${mockitoVersion}"]
+
+    providedDataDependencies =
+            [supportAnnotations  : "com.android.support:support-annotations:${supportLibraryVersion}",
+             jetbrainsAnnotations: "org.jetbrains:annotations:${jetbrainsAnnotationsVersion}"]
+
+    compileDataDependencies =
+            [dagger               : "com.google.dagger:dagger:${daggerVersion}",
+             dbFlowCore           : "com.github.Raizlabs.DBFlow:dbflow-core:${dbFlowVersion}",
+             dbFlow               : "com.github.Raizlabs.DBFlow:dbflow:${dbFlowVersion}",
+             retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+             retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+             retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"]
+
+    aptDataDependencies =
+            [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
+             dbFlowCompiler: "com.github.Raizlabs.DBFlow:dbflow-processor:${dbFlowVersion}"]
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="InvalidPackage">
+        <ignore regexp="retrofit"/>
+        <ignore regexp="okio"/>
+        <ignore regexp="dagger"/>
+    </issue>
+    <issue id="AllowBackup">
+        <ignore regexp="debug"/>
+    </issue>
+    <issue id="GoogleAppIndexingWarning" severity="ignore"/>
+    <issue id="IconLocation" severity="ignore"/>
+</lint>

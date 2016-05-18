@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.androidApplicationId
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode rootProject.ext.androidVersionCode
+        versionName rootProject.ext.androidVersionName
+
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_7
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+    }
+
+    variantFilter {
+        variant ->
+            if (variant.buildType.name.toLowerCase(Locale.ENGLISH).equals('release')) {
+                variant.setIgnore(true)
+            }
+    }
+
+    lintOptions {
+        checkAllWarnings true
+        warningsAsErrors true
+    }
+
+    dexOptions {
+        incremental true
+        preDexLibraries true
+    }
+
+    /**
+     * https://code.google.com/p/android/issues/detail?id=194980
+     */
+    packagingOptions {
+        exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
+        exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
+    }
+}
+
+dependencies {
+    compile project(path: ':domain')
+    compile project(path: ':data')
+
+    final Iterable<CharSequence> providedDependencies = providedPresentationDependencies.values()
+    final Iterable<CharSequence> debugCompileDependencies = debugCompilePresentationDependencies.
+            values()
+    final Iterable<CharSequence> compileDependencies = compilePresentationDependencies.values()
+    final Iterable<CharSequence> aptDependencies = aptPresentationDependencies.values()
+
+    for (final CharSequence dependency : providedDependencies) provided dependency
+    for (final CharSequence dependency : debugCompileDependencies) debugCompile dependency
+    for (final CharSequence dependency : compileDependencies) compile dependency
+    for (final CharSequence dependency : aptDependencies) apt dependency
+}

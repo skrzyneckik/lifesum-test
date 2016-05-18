@@ -1,0 +1,20 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:textColorPrimary">@color/medium</item>
+        <item name="android:textColorSecondary">@color/dark</item>
+        <item name="colorAccent">@color/dark</item>
+    </style>
+
+    <style name="AppTheme.SplashTheme">
+        <item name="android:colorBackground">@color/dark</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
+    <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/toolbar_title_font</item>
+        <item name="android:textColor">@color/light</item>
+    </style>
+
+</resources>
